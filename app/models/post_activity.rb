@@ -1,0 +1,2 @@
+class PostActivity < ApplicationRecord
+end
