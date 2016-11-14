@@ -1,5 +1,18 @@
-export function FetchTrips(){
-    const trips = fetch('http://localhost:3001/api/v1/trips').then(response => {
+
+
+export function fetchTrips(){
+    const trips = fetch('/api/v1/trips').then(response => {
         return response.json()
+    }).then(tripsPayload => {
+        return tripsPayload
     })
+
+    return {
+        type: 'FETCH_TRIPS',
+        payload: trips
+    }
 }
+
+// export function AddTrip(){
+//
+// }

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
         namespace :v1 do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :trips, only: [:index, :show]
+  resources :trips, only: [:index, :show, :new, :create]
   resources :users, only: [:index, :show]
   resources :activity, only: [:index, :show]
   resources :locations, only: [:index, :show]

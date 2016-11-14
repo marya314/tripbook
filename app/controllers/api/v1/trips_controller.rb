@@ -13,6 +13,19 @@ module Api
                 render json: @trip
             end
 
+            def new
+                @trip = Trip.new
+            end
+
+            def create
+                @trip = Trip.new
+                if trip.save
+                    redirect_to trip_path(trip)
+                else
+                    render 'new'
+                end
+            end
+
             private
             def trip_params
                 params.require(:trip).permit(:name, :description, :start_date, :end_date)
