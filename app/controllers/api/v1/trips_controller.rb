@@ -1,3 +1,5 @@
+require 'pry'
+
 module Api
     module V1
 
@@ -18,11 +20,12 @@ module Api
             end
 
             def create
-                @trip = Trip.new
-                if trip.save
-                    redirect_to trip_path(trip)
+                #  binding.pry
+                @trip = Trip.new(trip_params)
+                if @trip.save
+                    render json: @trip
                 else
-                    render 'new'
+                    render json: {success: false}
                 end
             end
 

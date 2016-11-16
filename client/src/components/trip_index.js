@@ -7,8 +7,6 @@ import { fetchTrips } from '../actions/index';
 
  class TripIndex extends React.Component {
 
-    //  ADD_TRIPS
-
     componentDidMount(){
         this.props.fetchTrips()
     }
@@ -23,7 +21,7 @@ import { fetchTrips } from '../actions/index';
                     </Link>
                 </div>
                 <br></br>
-                <ul>
+                <ul>    
                     {this.props.trips.map(trip => <Link to={`/trips/${trip.id}`} key={trip.id}>
                         <li >{trip.name}</li></Link>)}
                 </ul>

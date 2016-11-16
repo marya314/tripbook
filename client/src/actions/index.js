@@ -1,4 +1,4 @@
-
+import { browserHistory } from 'react-router';
 
 export function fetchTrips(){
     const trips = fetch('/api/v1/trips').then(response => {
@@ -13,12 +13,27 @@ export function fetchTrips(){
     }
 }
 
-export function AddTrip(newTripFromForm){
-    const newTrip = fetch('/api/v1/trips', {
-        method: 'POST'
+export function addTrip(newTripFromForm){
+    const newTripFromApi = fetch('/api/v1/trips', {
+        method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({trip: newTripFromForm})
+    }).then(response => {
+        return response.json()
+    }).then(newTripPayload => {
+        return newTripPayload
     })
+        if(newTripFromApi.success === false){
+            browserHistory.push('/trips/new')
+        }else{
+
+            return {
+                type: 'ADD_TRIP',
+                payload: newTripFromApi
+            }
+            browserHistory.push(`/trips/${newTripFromApi.id}`)
+        }
 }
