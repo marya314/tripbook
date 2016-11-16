@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from './actions/index';
+import * as actions from '../actions/index';
 
-export default tripNew () {
-
+class TripNew extends React.Component {
     render (){
         return (
             <div>
-                <form>
+            <p>create form</p>
+                {/* <form>
                     <label>Name:</label>
                     <input ref='name' />
                     <label>Description:</label>
@@ -16,8 +16,10 @@ export default tripNew () {
                     <input ref='start_date' />
                     <label>End Date:</label>
                     <input ref='end_date' />
-                </form>
+                </form> */}
             </div>
         )
     }
 }
+
+export default TripNew;

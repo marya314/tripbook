@@ -17,9 +17,15 @@ import { fetchTrips } from '../actions/index';
         return (
             <div className="col-md-4" id="trip-index">
                 <h2>My Trips</h2>
+                <div className="test-xs-left">
+                    <Link to="/trips/new" className="btn btn-primary">
+                        Add A Trip
+                    </Link>
+                </div>
+                <br></br>
                 <ul>
-                    {this.props.trips.map(trip => <Link to={`/trips/${trip.id}`}>
-                        <li key={trip.id}>{trip.name}</li></Link>)}
+                    {this.props.trips.map(trip => <Link to={`/trips/${trip.id}`} key={trip.id}>
+                        <li >{trip.name}</li></Link>)}
                 </ul>
                 {this.props.children}
             </div>
@@ -35,6 +41,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
+        //fetchTrips is a key on prop, its value is a function. therefore, we can call it up top.
         fetchTrips: bindActionCreators(fetchTrips, dispatch)
     }
 }

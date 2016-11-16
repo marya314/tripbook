@@ -13,6 +13,12 @@ export function fetchTrips(){
     }
 }
 
-// export function AddTrip(){
-//
-// }
+export function AddTrip(newTripFromForm){
+    const newTrip = fetch('/api/v1/trips', {
+        method: 'POST'
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+}

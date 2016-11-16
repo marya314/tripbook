@@ -28,7 +28,6 @@ post = Post.create
 photo = Photo.create
 
 user.trips << trip
-location.trips << trip
 trip.locations << location
 trip.posts << post
 post.activities << activity

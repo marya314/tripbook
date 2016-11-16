@@ -6,21 +6,22 @@ function TripDetail(props){
             <div className="col-md-8" id="trip-detail">
 
                 <h3>{props.trip.name}</h3>
-                <li>{props.trip.description}</li>
+                <li><b>Description:</b> {props.trip.description}</li>
                 {props.trip.locations.map(location =>{
-                    return <li>{location.name}</li>
+                    return <li><b>Locations:</b> {location.name}</li>
                 })}
-                <li>{props.trip.start_date}</li>
-                <li>{props.trip.end_date}</li>
+                <li><b>Start Date:</b> {props.trip.start_date}</li>
+                <li><b>End Date:</b> {props.trip.end_date}</li>
 
             </div>
         )
 };
 
 function mapStateToProps(state, ownProps) {
-        const trip = state.trips.find((trip) => return {trip.id === ownProps.params.id})
+    //where trip_id matches url id
+        const trip = state.trips.find((trip) => {return trip.id === parseInt(ownProps.params.id)})
         return {trip: trip}
-
 }
 
-export default connect(mapStateToProps, TripDetail)
+const componentCreator = connect(mapStateToProps)
+export default componentCreator(TripDetail)
