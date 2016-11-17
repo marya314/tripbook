@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 function TripDetail(props){
         return (
             <div className="col-md-8" id="trip-detail">
-{console.log(props)}
                 <h3>{props.trip.name}</h3>
                 <li><b>Description:</b> {props.trip.description}</li>
                 {props.trip.locations.map(location =>{
@@ -13,6 +12,11 @@ function TripDetail(props){
                 <li><b>Start Date:</b> {props.trip.start_date}</li>
                 <li><b>End Date:</b> {props.trip.end_date}</li>
 
+                <div>
+                    <button className="btn btn-primary">Add A Location</button>
+                    <button className="btn btn-primary">Add An Activity</button>
+                    <button className="btn btn-primary">Add A Photo</button>
+                </div>
             </div>
         )
 };

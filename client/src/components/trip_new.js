@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addTrip } from '../actions/index';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 
 class TripNew extends React.Component {
 // debugger
@@ -12,7 +12,7 @@ class TripNew extends React.Component {
 
      newTripHandler(event){
         event.preventDefault()
-        const newTrip = {name: this.refs.name.value, description: this.refs.description.value,  start_date: this.refs.start_date.value, end_date: this.refs.end_date.value}
+        const newTrip = {name: this.refs.name.value, description: this.refs.description.value, start_date: this.refs.start_date.value, end_date: this.refs.end_date.value}
 // debugger
         this.props.addTrip(newTrip);
     }

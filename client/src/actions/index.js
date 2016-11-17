@@ -28,12 +28,11 @@ export function addTrip(newTripFromForm){
     })
         if(newTripFromApi.success === false){
             browserHistory.push('/trips/new')
-        }else{
+        } else {
 
             return {
                 type: 'ADD_TRIP',
                 payload: newTripFromApi
             }
-            browserHistory.push(`/trips/${newTripFromApi.id}`)
         }
 }

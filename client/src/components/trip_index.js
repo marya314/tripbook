@@ -13,7 +13,7 @@ import { fetchTrips } from '../actions/index';
 
     render() {
         return (
-            <div className="col-md-4" id="trip-index">
+            <div className="col-md-3" id="trip-index">
                 <h2>My Trips</h2>
                 <div className="test-xs-left">
                     <Link to="/trips/new" className="btn btn-primary">
@@ -21,7 +21,7 @@ import { fetchTrips } from '../actions/index';
                     </Link>
                 </div>
                 <br></br>
-                <ul>    
+                <ul>
                     {this.props.trips.map(trip => <Link to={`/trips/${trip.id}`} key={trip.id}>
                         <li >{trip.name}</li></Link>)}
                 </ul>
@@ -32,6 +32,7 @@ import { fetchTrips } from '../actions/index';
 };
 
 function mapStateToProps(state){
+    // debugger
     return {
         trips: state.trips
     }
