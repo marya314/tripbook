@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   resources :trips, only: [:index, :show, :new, :create]
   resources :users, only: [:index, :show]
   resources :activity, only: [:index, :show]
-  resources :locations, only: [:index, :show]
+  resources :locations, only: [:index, :show, :new, :create]
   resources :post, only: [:index, :show]
+
+  post '/login', to: "sessions#create"
 
   # get '/trips', to: 'trip#show'
 

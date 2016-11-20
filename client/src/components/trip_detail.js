@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 function TripDetail(props){
         return (
@@ -13,7 +14,9 @@ function TripDetail(props){
                 <li><b>End Date:</b> {props.trip.end_date}</li>
 
                 <div>
-                    <button className="btn btn-primary">Add A Location</button>
+                <Link to="/locations/new" className="btn btn-primary">
+                    Add A Location
+                </Link>
                     <button className="btn btn-primary">Add An Activity</button>
                     <button className="btn btn-primary">Add A Photo</button>
                 </div>
@@ -22,10 +25,14 @@ function TripDetail(props){
 };
 
 function mapStateToProps(state, ownProps) {
-    console.log(state)
+    // console.log(state)
     //where trip_id matches url id
         const trip = state.trips.find((trip) => {return trip.id === parseInt(ownProps.params.id)})
+        if(trip===undefined){
+            return {trip: {name: "", locations: [], description: "", start_date: "", end_date: ""}}
+        }else{
         return {trip: trip}
+    }
 }
 
 const componentCreator = connect(mapStateToProps)

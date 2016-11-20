@@ -13,7 +13,7 @@ import { fetchTrips } from '../actions/index';
 
     render() {
         return (
-            <div className="col-md-3" id="trip-index">
+            <div className="container" id="trip-index">
                 <h2>My Trips</h2>
                 <div className="test-xs-left">
                     <Link to="/trips/new" className="btn btn-primary">
@@ -33,6 +33,7 @@ import { fetchTrips } from '../actions/index';
 
 function mapStateToProps(state){
     // debugger
+    console.log(state.trips)
     return {
         trips: state.trips
     }
