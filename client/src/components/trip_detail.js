@@ -30,7 +30,7 @@ function mapStateToProps(state, ownProps) {
         const trip = state.trips.find((trip) => {return trip.id === parseInt(ownProps.params.id)})
         if(trip===undefined){
             return {trip: {name: "", locations: [], description: "", start_date: "", end_date: ""}}
-        }else{
+        } else {
         return {trip: trip}
     }
 }

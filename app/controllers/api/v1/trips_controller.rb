@@ -23,6 +23,7 @@ module Api
                 #  binding.pry
                 @trip = Trip.new(trip_params)
                 if @trip.save
+                    @trip.user = @current_user
                     render json: @trip
                 else
                     render json: {success: false}

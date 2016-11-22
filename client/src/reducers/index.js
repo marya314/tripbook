@@ -5,7 +5,7 @@ import sessionsReducer from './sessions_reducer'
 
 const rootReducer = combineReducers({
     trips: tripsReducer,
-    locations: locationsReducer
+    locations: locationsReducer,
     session: sessionsReducer
 })
 

@@ -1,7 +1,9 @@
 import { browserHistory } from 'react-router';
 
 export function fetchTrips(){
-    const trips = fetch('/api/v1/trips').then(response => {
+    const trips = fetch('/api/v1/trips', {
+    headers: {'Authorization': `Bearer ${sessionStorage.jwt}`}
+    }).then(response => {
         return response.json()
     }).then(tripsPayload => {
         return tripsPayload
@@ -18,7 +20,8 @@ export function addTrip(newTripFromForm){
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.jwt}`
         },
         body: JSON.stringify({trip: newTripFromForm})
     }).then(response => {
@@ -29,7 +32,6 @@ export function addTrip(newTripFromForm){
         if(newTripFromApi.success === false){
             browserHistory.push('/trips/new')
         } else {
-
             return {
                 type: 'ADD_TRIP',
                 payload: newTripFromApi
@@ -37,12 +39,13 @@ export function addTrip(newTripFromForm){
         }
 }
 
-export function addLocation(newLocationFromForm){
+export function addLocation(newLocationFromForm, ){
     const newLocationFromApi = fetch('/api/v1/locations',{
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.jwt}`
         },
         body: JSON.stringify({location: newLocationFromForm})
     }).then(response =>{
@@ -62,7 +65,8 @@ export function logIn(credentials){
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${sessionStorage.jwt}`
   },
     body: JSON.stringify(credentials)
   }).then(response => {
@@ -74,5 +78,31 @@ export function logIn(credentials){
     return jwtTokenFromPayload
   })
 
-  return {type: 'LOG_IN_SUCCESS', payload: jwtToken}
+  return {
+      type: 'LOG_IN_SUCCESS', payload: jwtToken
+  }
+}
+
+export function signUp(credentials){
+    // console.log(JSON.stringify(credentials))
+    const jwtToken = fetch('/api/v1/signup', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.jwt}`
+        },
+
+        body: JSON.stringify({user: credentials})
+    }).then(response => {
+        return response.json()
+    }).then(jwtTokenFromPayload => {
+        sessionStorage.setItem('jwt', jwtTokenFromPayload.jwt)
+        sessionStorage.setItem('currentUserId', jwtTokenFromPayload.currentUserId)
+        return jwtTokenFromPayload
+    })
+
+    return {
+        type: 'SIGN_UP_SUCCESS', payload: jwtToken
+    }
 }

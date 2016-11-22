@@ -21,6 +21,8 @@ module Api
                 @location = Location.new(location_params)
                 # binding.pry
                 if @location.save
+                    # Trip.find(params[trip_id])
+                    # @location.trip << @location
                     render json: @location
                 else
                     render json: {success:false}
@@ -29,7 +31,7 @@ module Api
 
             private
             def location_params
-                params.require(:location).permit(:name, :description)
+                params.require(:location).permit(:name, :description, :trip_id)
             end
 
         end

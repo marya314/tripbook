@@ -7,11 +7,22 @@ import { fetchTrips } from '../actions/index';
 
  class TripIndex extends React.Component {
 
-    componentDidMount(){
+    componentWillMount(){
         this.props.fetchTrips()
     }
 
+    mapTripHandler(){
+        // console.log(this.props.trips.length)
+        if(this.props.trips.length === 0 || this.props.trips.length === undefined){
+            return "Click above to add a trip"
+        } else {
+        return(this.props.trips.map(trip => <Link to={`/trips/${trip.id}`} key={trip.id}>
+            <li >{trip.name}</li></Link>))
+        }
+    }
+
     render() {
+        // debugger
         return (
             <div className="container" id="trip-index">
                 <h2>My Trips</h2>
@@ -22,8 +33,7 @@ import { fetchTrips } from '../actions/index';
                 </div>
                 <br></br>
                 <ul>
-                    {this.props.trips.map(trip => <Link to={`/trips/${trip.id}`} key={trip.id}>
-                        <li >{trip.name}</li></Link>)}
+                    {this.mapTripHandler()}
                 </ul>
                 {this.props.children}
             </div>
@@ -31,13 +41,17 @@ import { fetchTrips } from '../actions/index';
     }
 };
 
+TripIndex.defaultProps = {
+    trips: []
+}
+
 function mapStateToProps(state){
     // debugger
-    console.log(state.trips)
-    return {
-        trips: state.trips
+    // console.log(state.trips)
+        return {
+            trips: state.trips
     }
-}
+    }
 
 function mapDispatchToProps(dispatch){
     return {

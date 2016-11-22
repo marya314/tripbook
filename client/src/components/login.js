@@ -1,5 +1,5 @@
 import React from 'react';
-import * as actions from '../actions/index';
+import { logIn } from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -11,15 +11,16 @@ class LogIn extends React.Component {
 
     logInHandler(event){
         event.preventDefault()
-        this.props.actions.logIn({email: this.refs.email.value, password: this.refs.password.value})
+        // debugger
+        this.props.logIn({email: this.refs.email.value, password: this.refs.password.value})
     }
 
     render(){
         return(
         <div id='log-in-form'>
-            <form onSubmit={logInHandler}>
-                <label>Email Address</label>
-                <input input type="email" ref='email' />
+            <form onSubmit={this.logInHandler}>
+                <label>Email</label>
+                <input type="email" ref='email' />
                 <label>Password:</label>
                 <input type="password" ref='password' />
                 <button type="submit" className="btn btn-default">Log In</button>
@@ -28,8 +29,11 @@ class LogIn extends React.Component {
     )}
 }
 
-mapDispatchToProps(dispatch){
-    return{actions: bindActionCreators, dispatch}
+function mapDispatchToProps(dispatch){
+    return {
+        logIn: bindActionCreators(logIn, dispatch)
+    }
 }
 
-export default connect(null, mapDispatchToProps)(LogIn)
+const componentCreator = connect(null, mapDispatchToProps)
+export default componentCreator(LogIn);

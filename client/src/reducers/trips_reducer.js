@@ -12,5 +12,3 @@ export default function tripsReducer(state=[], action) {
             return state;
     }
 }
-
-//how to route to trip/id , uncaught promise error?
