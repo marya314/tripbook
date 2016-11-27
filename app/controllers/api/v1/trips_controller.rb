@@ -22,8 +22,11 @@ module Api
             def create
                 #  binding.pry
                 @trip = Trip.new(trip_params)
+                # binding.pry
+                @trip.user = @current_user
                 if @trip.save
-                    @trip.user = @current_user
+
+                    # binding.pry
                     render json: @trip
                 else
                     render json: {success: false}
@@ -32,7 +35,7 @@ module Api
 
             private
             def trip_params
-                params.require(:trip).permit(:name, :description, :start_date, :end_date)
+                params.require(:trip).permit(:name, :description, :start_date, :end_date, :user_id)
             end
 
         end

@@ -5,7 +5,7 @@ export default function tripsReducer(state=[], action) {
         case 'FETCH_TRIPS':
             return action.payload;
         case 'ADD_TRIP':
-        console.log(state, "state inside reducer")
+        // console.log(state, "state inside reducer")
         browserHistory.push(`/trips/${action.payload.id}`)
             return [...state, action.payload];
         default:

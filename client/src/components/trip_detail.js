@@ -7,9 +7,9 @@ function TripDetail(props){
             <div className="col-md-8" id="trip-detail">
                 <h3>{props.trip.name}</h3>
                 <li><b>Description:</b> {props.trip.description}</li>
-                {props.trip.locations.map(location =>{
-                    return <li><b>Locations:</b> {location.name}</li>
-                })}
+                <li><b>Locations:</b> {props.trip.locations.map((location) => {
+                    return location.name
+                })}</li>
                 <li><b>Start Date:</b> {props.trip.start_date}</li>
                 <li><b>End Date:</b> {props.trip.end_date}</li>
 

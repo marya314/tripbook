@@ -7,6 +7,7 @@ const rootReducer = combineReducers({
     trips: tripsReducer,
     locations: locationsReducer,
     session: sessionsReducer
+
 })
 
 export default rootReducer;

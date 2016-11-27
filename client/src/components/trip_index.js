@@ -12,12 +12,15 @@ import { fetchTrips } from '../actions/index';
     }
 
     mapTripHandler(){
-        // console.log(this.props.trips.length)
+        // console.log("in mapTripHandler", this.props.trips)
+        // debugger
         if(this.props.trips.length === 0 || this.props.trips.length === undefined){
             return "Click above to add a trip"
         } else {
-        return(this.props.trips.map(trip => <Link to={`/trips/${trip.id}`} key={trip.id}>
-            <li >{trip.name}</li></Link>))
+            // console.log(this.props.trips)
+        // debugger
+            return(this.props.trips.map(trip => <Link to={`/trips/${trip.id}`} key={trip.id}>
+                <li>{trip.name}</li></Link>))
         }
     }
 
@@ -35,6 +38,7 @@ import { fetchTrips } from '../actions/index';
                 <ul>
                     {this.mapTripHandler()}
                 </ul>
+                {/* why did we call this here again? */}
                 {this.props.children}
             </div>
         )
@@ -47,11 +51,15 @@ TripIndex.defaultProps = {
 
 function mapStateToProps(state){
     // debugger
-    // console.log(state.trips)
+    const myTrips = state.trips.filter((trip) => {
+        return trip.user.id === parseInt(sessionStorage.currentUserId);
+    });
+    // debugger
+    // console.log("in mSTP", myTrips)
         return {
-            trips: state.trips
+            trips: myTrips
     }
-    }
+}
 
 function mapDispatchToProps(dispatch){
     return {

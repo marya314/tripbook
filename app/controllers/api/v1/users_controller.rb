@@ -18,7 +18,7 @@ module Api
                 user = User.new(user_params)
                 # binding.pry
                 if user.save
-                    # binding.pry
+                    #  binding.pry
                     token = JWT.encode({id: user.id}, ENV["AUTH_SECRET_KEY"], 'HS256')
                     render json: {jwt: token, currentUserId: user.id, currentUserName: user.name}
                 else

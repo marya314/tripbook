@@ -19,10 +19,9 @@ module Api
 
             def create
                 @location = Location.new(location_params)
-                # binding.pry
+                @location.trip << @location
                 if @location.save
-                    # Trip.find(params[trip_id])
-                    # @location.trip << @location
+                    binding.pry
                     render json: @location
                 else
                     render json: {success:false}
