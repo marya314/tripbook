@@ -12,8 +12,7 @@ import { fetchTrips } from '../actions/index';
     }
 
     mapTripHandler(){
-        // console.log("in mapTripHandler", this.props.trips)
-        // debugger
+        //if user doesn't have any trips - prompt to add a trip, else if user already has trips - show a list of their trips
         if(this.props.trips.length === 0 || this.props.trips.length === undefined){
             return "Click above to add a trip"
         } else {
@@ -38,19 +37,21 @@ import { fetchTrips } from '../actions/index';
                 <ul>
                     {this.mapTripHandler()}
                 </ul>
-                {/* why did we call this here again? */}
+                {/* show trip detail - props of the child element - TripIndex is parent */}
                 {this.props.children}
             </div>
         )
     }
 };
 
-TripIndex.defaultProps = {
-    trips: []
-}
+//I don't think this is needed?
+// TripIndex.defaultProps = {
+//     trips: []
+// }
 
 function mapStateToProps(state){
     // debugger
+    //filter trips where the user.id matches the userId in sessionStorage
     const myTrips = state.trips.filter((trip) => {
         return trip.user.id === parseInt(sessionStorage.currentUserId);
     });
